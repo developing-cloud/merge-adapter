@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: A simple AWS Lambda function for merging parallel outcomes for Step Functions. The solely technical, auxiliary function.
+Parameters:
+  envType:
+    Type: String
+Resources:
+  lambdaMergeAdapter:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub merge-adapter-${envType}
+      Handler: merge_adapter.lambda_handler
+      Runtime: python3.8
+      CodeUri: .
+      MemorySize: 128
+      Timeout: 15
+      Role: !Sub arn:aws:iam::${AWS::AccountId}:role/basic-lambda-execution-role
