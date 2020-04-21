@@ -1,4 +1,3 @@
-import boto3
 
 
 def lambda_handler(event, null):
@@ -25,8 +24,7 @@ def lambda_handler(event, null):
 
     input_data.update(gps_attributes)
 
-    output = {
+    return {
         'action': 'save',
         'input': input_data
     }
-    return output
